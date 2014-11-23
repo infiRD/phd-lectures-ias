@@ -1,0 +1,20 @@
+global _start
+extern ExitProcess
+
+section .text
+        _start:
+
+		mov eax, 1
+		mov ebx, 2
+		mov ecx, 3
+        ;
+        ; VOID WINAPI ExitProcess( _In_  UINT uExitCode ) ;
+        ;
+        push    dword 0         ; Arg1: push exit code
+        call    ExitProcess
+        
+        
+        
+        
+        
+        
