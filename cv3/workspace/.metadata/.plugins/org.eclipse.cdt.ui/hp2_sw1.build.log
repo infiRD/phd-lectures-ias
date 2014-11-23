@@ -1,7 +1,0 @@
-09:54:42 **** Build of configuration Default for project hp2_sw1 ****
-make clean 
-del hp2_sw1.o hp2_sw1.xexe
-Could Not Find P:\Codasip\ias\hp2_sw1\hp2_sw1.o
-
-09:54:42 Build Finished (took 188ms)
-

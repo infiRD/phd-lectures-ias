@@ -1,3 +1,0 @@
-commit_dialog_history_messages=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<messages>\r\n<message>remove stuff</message>\r\n<message>added multiplatform</message>\r\n<message>added assembler dialect</message>\r\n<message>removed gdbinit</message>\r\n<message>bugfix</message>\r\n<message>fixed makefiles</message>\r\n<message>improved windows support</message>\r\n<message>added nasm</message>\r\n<message>makefile is multikulti</message>\r\n<message>added preferences</message>\r\n</messages>
-default_repository_dir=${workspace_loc}
-eclipse.preferences.version=1
