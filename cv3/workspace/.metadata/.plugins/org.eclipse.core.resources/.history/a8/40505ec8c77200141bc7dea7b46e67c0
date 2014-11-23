@@ -1,0 +1,37 @@
+; ========================================================== ;
+;                                                            ;
+; Utilities for IAS subject labs                             ;
+;                                                            ;
+; Version: 	v0.1                                             ;
+; Date:		2014-11-23                                       ;
+; Author: 	Martin Zamba (izamba@fit.vutbr.cz)               ;
+;                                                            ;
+; ========================================================== ; 
+
+%ifndef IAS_UTILS	; to avoid multiple inclusion
+%define IAS_UTILS	;
+
+; ========================================================== ; 
+;                           Macros                           ;
+; ========================================================== ; 
+
+%macro nl 0
+	call WriteNewLine
+%endmacro
+
+; ========================================================== ; 
+;                          Variables                         ;
+; ========================================================== ; 
+
+[section .data use32 class=DATA] 	
+
+
+; ========================================================== ; 
+;                         Functions                          ;
+; ========================================================== ; 
+
+[section .checker use32 class=CODE] 	
+
+
+%endif				; to avoid multiple inclusion
+	

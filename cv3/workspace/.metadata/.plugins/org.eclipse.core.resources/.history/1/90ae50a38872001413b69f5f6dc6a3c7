@@ -1,0 +1,41 @@
+
+AS=nasm
+LD=ld
+
+ifeq ($(OS),Windows_NT)
+	SOURCES=ias_cv3_win.asm
+	LDFLAGS=-LC:\windows\system32 -lkernel32 -LC:\windows\system32 -lmsvcrt
+	ASFLAGS=-f win32 -g -O0 --prefix _
+	EXECUTABLE=ias_cv3_win.exe
+else
+	SOURCES=ias_cv3_lin.asm
+	LDFLAGS=
+	ASFLAGS=-f elf64 -F dwarf -g
+	EXECUTABLE=ias_cv3_lin
+endif
+
+OBJECTS=$(SOURCES:%.asm=%.o)
+
+all: ASFLAGS += -p libs/libIAS_ld.asm
+all: clean compile
+
+compile: $(SOURCES) $(EXECUTABLE)
+
+$(EXECUTABLE): $(OBJECTS)
+	$(LD) -o $@ $(OBJECTS) ${LDFLAGS}
+
+$(OBJECTS): $(SOURCES)
+	$(AS) $(ASFLAGS) -o $@ $<
+	
+clean:
+ifeq ($(OS),Windows_NT)
+	del ${OBJECTS} $(EXECUTABLE)
+else
+	rm -f ${OBJECTS} $(EXECUTABLE)
+endif
+
+test: all do_tests
+
+do_tests: 
+	echo " asda "
+	$(EXECUTABLE)

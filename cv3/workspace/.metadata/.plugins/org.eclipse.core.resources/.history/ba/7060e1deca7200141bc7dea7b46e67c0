@@ -1,0 +1,104 @@
+; ================================================ 
+;
+; IAS, lab 4 
+; Fri, 28.11.2014
+;
+; Author: ---- fill-in using format: xlogin00 ----
+;
+; ================================================
+
+%include 'libs\utils.asm'
+%include 'libs\checker.asm'
+
+[section .data] 	; data segment definition
+
+; Number sequence
+%ifdef TEST
+	seq: 		db 33, 5, 3, 15, 20, 25, 30, 25, 20, 15, 10, 5, 0, -5, -10, -15
+	n:   		db 15
+	results:	dd 1, 2, 3, 4
+%else
+	seq: 		db 34, 3, 5, 10, 15, 18, 21, 33, 11, 45, 23
+	n:   		db 10
+	results:	dd 62, 105, 72, 88
+%endif
+
+sHelloMsg: 	db  "Hello World!",EOL,0
+
+[section .text use32 class=CODE] 	; code segment definition
+
+prologue                			; macro -- program initialisation
+
+; --------------------------------------------------------------------------------------------
+; Zadanie:
+; - body 1..4 v zdrojovom kode nizsie
+; 
+; --------------------------------------------------------------------------------------------
+
+uloha_1:
+; 1) Ak je prve cislo vacsie ako druhe, tak do EDX ulozte 1, inak do EDX ulozte 2
+;    (0.5 bodu) 
+
+
+	mov ESI, sHelloMsg
+	call WriteString
+	
+	mov EAX, 10
+	sub EAX, 11
+	call WriteFlags
+	
+	xor EAX, EAX
+	mov AL, 200 
+	add AL, 100
+	call WriteFlags
+	call WriteInt32
+
+  	mov EDX, 63
+	_check_task 1
+
+;---------------------------------------------------------------------------------
+
+uloha_2:
+; 1) Spocitajte sumu prvkov postupnostoi 'seq' mensich ako 20     
+;    (0.5 bodu)
+
+
+; -- vas kod --
+  
+  
+	mov EDX, 105
+	check_task 2
+	
+;---------------------------------------------------------------------------------
+
+  
+uloha_3:
+; 2) Spocitajte sumu prvkov postupnostoi 'seq' od prveho prvku az do bodu, ked 
+;    nasledujuci prvok je mensi ako aktualny prvok     
+;    (1 bod)
+
+; -- vas kod --
+   
+   	mov EDX, 105
+	check_task 3
+	
+;---------------------------------------------------------------------------------   
+
+uloha_4:
+; 3) Spocitajte sucet prvych 10 prvkov Fibonnachiho postupnosti a ulozte vysledok 
+;    do registru EDX
+;    (1 bod)  
+
+; -- vas kod --
+
+	mov EDX, 105
+	check_task 4
+   
+;---------------------------------------------------------------------------------  
+
+
+epilogue                			; macro -- program exit
+
+
+
+

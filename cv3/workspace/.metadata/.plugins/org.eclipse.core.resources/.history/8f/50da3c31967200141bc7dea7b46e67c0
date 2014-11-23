@@ -1,0 +1,53 @@
+
+AS=nasm
+LD=ld
+
+ifeq ($(OS),Windows_NT)
+	SOURCES=main.asm
+	LDFLAGS=-LC:\windows\system32 -lkernel32 -LC:\windows\system32 -lmsvcrt
+	ASFLAGS=-f win32 -g -O0 --prefix _
+	EXECUTABLE=main.exe
+else
+	SOURCES=main_lin.asm
+	LDFLAGS=
+	ASFLAGS=-f elf64 -F dwarf -g
+	EXECUTABLE=main
+endif
+
+OBJECTS=$(SOURCES:%.asm=%.o)
+
+all: ASFLAGS += -p libs/libIAS_ld.asm
+all: clean compile
+
+all-alink: LD=alink
+all-alink: LDFLAGS=-oPE -subsys console
+all-alink: ASFLAGS=-fobj 
+all-alink: ASFLAGS+=-p libs/libIAS_alink.asm
+all-alink: clean compile
+
+compile: $(SOURCES) $(EXECUTABLE)
+
+$(EXECUTABLE): $(OBJECTS)
+	$(LD) -o $@ $(OBJECTS) ${LDFLAGS}
+
+$(OBJECTS): $(SOURCES)
+	$(AS) $(ASFLAGS) -o $@ $<
+	
+clean:
+ifeq ($(OS),Windows_NT)
+	del ${OBJECTS} $(EXECUTABLE)
+else
+	rm -f ${OBJECTS} $(EXECUTABLE)
+endif
+
+test: ASFLAGS += -d TEST
+test: all
+	@echo off
+	@echo asdasd
+	@$(EXECUTABLE)
+
+run: all
+	$(EXECUTABLE)
+
+run-alink: all-alink
+	$(EXECUTABLE)
