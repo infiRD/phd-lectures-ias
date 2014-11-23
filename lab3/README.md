@@ -9,17 +9,17 @@ Simple control constructs
 
 3. download portable version of git [msysgit](https://github.com/msysgit/msysgit/releases), for example [portableGit-1.9.4-preview20140929](https://github.com/msysgit/msysgit/releases/download/Git-1.9.4-preview20140929/PortableGit-1.9.4-preview20140929.7z)
 
-4. unpack msysgit into some directory and run it using _git-cmd.bat_
+4. unpack msysgit into some directory and run it using `git-cmd.bat`
 
-- Stiahnite si archív s kostrou zadania a otvorte si priložený workspace v Codasip Studiu
-- Vyriešte úlohy uvedené v zadaní
+5. navigate to a suitable directory, e.g. `cd P:/`
 
-- Ak máte problém s Codasip Studiom, prejdite si tipy
+6. clone the IAS repository using `git clone https://github.com/infiRD/IAS.git`
 
+7. open provided workspace using Codasip Studio at path P:/
 
-
-https://wis.fit.vutbr.cz/FIT/db/vyuka/ucitel/cwk.php?title=IAS:Cvi%E8en%ED_3&id=9959
-
+8. solve all the tasks
 
 
-IAS /Assembly Languages/ lab projects (subject taught on fit.vutbr.cz)
+You might want to check out the [tips for Codasip Studio (Slovak only)](https://www.evernote.com/shard/s373/sh/b3ae5877-6faf-461d-9310-37daf9322f16/8033abc217738785).
+
+
