@@ -6,6 +6,8 @@ Simple control constructs
 - instructions description amd basic guidelines: [Wiki IAS] (https://wis.fit.vutbr.cz/FIT/db/vyuka/ucitel/cwk.php?title=IAS:Cvi%E8en%ED_3&id=9959)
 - read about [common usage of x86 registers](http://www.eecg.toronto.edu/~amza/www.mindsec.com/files/x86regs.html)
 
+- download portable version of git from https://github.com/msysgit/msysgit/releases
+
 - Stiahnite si archív s kostrou zadania a otvorte si priložený workspace v Codasip Studiu
 - Vyriešte úlohy uvedené v zadaní
 
