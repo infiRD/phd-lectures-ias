@@ -1,4 +1,4 @@
-IAS - lab 3
+IAS - lab 4
 ===========
 Simple control constructs
 -------------------------
@@ -12,6 +12,12 @@ Simple control constructs
 7. open provided workspace using Codasip Studio at path `P:/IAS/lab3/workspace`
 8. solve all the tasks
 
+
+```ruby
+require 'redcarpet'
+markdown = Redcarpet.new("Hello World!")
+puts markdown.to_html
+```
 
 You might want to check out the [tips for Codasip Studio (Slovak only)](https://www.evernote.com/shard/s373/sh/b3ae5877-6faf-461d-9310-37daf9322f16/8033abc217738785).
 
