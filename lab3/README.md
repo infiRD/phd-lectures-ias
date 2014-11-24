@@ -32,7 +32,7 @@ cp IAS-master/lab3 IAS/ -r
 
 You might want to check out the [tips for Codasip Studio (Slovak only)](https://www.evernote.com/shard/s373/sh/b3ae5877-6faf-461d-9310-37daf9322f16/8033abc217738785).
 
-If you need to download updates to IAS-master from girhub do the following:
+If you need to download updates to IAS-master from github do the following:
 ```bash
 P:
 cd P:/IAS-master
