@@ -24,7 +24,8 @@ git clone https://github.com/infiRD/IAS.git IAS-master
 mkdir IAS
 cp IAS-master/lab3 IAS/ -r
 ```
-8. open provided workspace using Codasip Studio at path **P:/IAS/lab3/workspace**
+8. open provided workspace using Codasip Studio at path 
+---**P:/IAS/lab3/workspace**
 9. solve all the tasks
 
 
