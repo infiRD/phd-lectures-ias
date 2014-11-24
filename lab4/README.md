@@ -12,8 +12,8 @@ Simple control constructs
 ```
 5. navigate to a suitable directory, e.g. 
 ```bash
-cd P:/
 P:
+cd P:/
 ```
 6. clone the IAS repository using 
 ```bash
@@ -21,10 +21,10 @@ git clone https://github.com/infiRD/IAS.git IAS-master
 ```
 7. make your IAS working directory and make your working copy of supplied lab4 workspace 
 ```bash
-> mkdir IAS
-> cp IAS-master/lab4 IAS/ -r
+mkdir IAS
+cp IAS-master/lab4 IAS/ -r
 ```
-8. open provided workspace using Codasip Studio at path `P:/IAS/lab4/workspace`
+8. open provided workspace using Codasip Studio at path **P:/IAS/lab4/workspace**
 8. solve all the tasks
 
 You might want to check out the [tips for Codasip Studio (Slovak only)](https://www.evernote.com/shard/s373/sh/b3ae5877-6faf-461d-9310-37daf9322f16/8033abc217738785).
