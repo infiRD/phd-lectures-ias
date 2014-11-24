@@ -3,30 +3,32 @@ IAS - lab 3
 Simple control constructs
 -------------------------
 
-1. read instructions description and basic guidelines: [Wiki IAS] (https://wis.fit.vutbr.cz/FIT/db/vyuka/ucitel/cwk.php?title=IAS:Cvi%E8en%ED_3&id=9959)
-2. read about [common usage of x86 registers](http://www.eecg.toronto.edu/~amza/www.mindsec.com/files/x86regs.html)
-3. download portable version of git [msysgit](https://github.com/msysgit/msysgit/releases), for example [portableGit-1.9.4-preview20140929](https://github.com/msysgit/msysgit/releases/download/Git-1.9.4-preview20140929/PortableGit-1.9.4-preview20140929.7z)
-4. unpack msysgit into some directory and run its shell using
+* read instructions description and basic guidelines: [Wiki IAS] (https://wis.fit.vutbr.cz/FIT/db/vyuka/ucitel/cwk.php?title=IAS:Cvi%E8en%ED_3&id=9959)
+* read about [common usage of x86 registers](http://www.eecg.toronto.edu/~amza/www.mindsec.com/files/x86regs.html)
+* download portable version of git [msysgit](https://github.com/msysgit/msysgit/releases), for example [portableGit-1.9.4-preview20140929](https://github.com/msysgit/msysgit/releases/download/Git-1.9.4-preview20140929/PortableGit-1.9.4-preview20140929.7z)
+* unpack msysgit into some directory and run its shell using
 ```bash
 ./git-cmd.bat
 ```
-5. navigate to a suitable directory, e.g. 
+* navigate to a suitable directory, e.g. 
 ```bash
 P:
 cd P:/
 ```
-6. clone the IAS repository using 
+* clone the IAS repository using 
 ```bash
 git clone https://github.com/infiRD/IAS.git IAS-master
 ```
-7. make your IAS working directory and make your working copy of supplied lab4 workspace 
+* make your IAS working directory and make your working copy of supplied lab4 workspace 
 ```bash
 mkdir IAS
 cp IAS-master/lab3 IAS/ -r
 ```
-8. open provided workspace using Codasip Studio at path 
----**P:/IAS/lab3/workspace**
-9. solve all the tasks
+* open provided workspace using Codasip Studio at path 
+ 
+--- **P:/IAS/lab3/workspace**
+
+* solve all the tasks
 
 
 ### Aditional information
