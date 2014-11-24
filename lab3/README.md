@@ -27,6 +27,9 @@ cp IAS-master/lab3 IAS/ -r
 8. open provided workspace using Codasip Studio at path **P:/IAS/lab3/workspace**
 9. solve all the tasks
 
+
+### Aditional information
+
 You might want to check out the [tips for Codasip Studio (Slovak only)](https://www.evernote.com/shard/s373/sh/b3ae5877-6faf-461d-9310-37daf9322f16/8033abc217738785).
 
 If you need to download updates to IAS-master from girhub do the following:
