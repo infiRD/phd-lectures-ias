@@ -1,0 +1,208 @@
+; ================================================ 
+;
+; IAS, lab 4
+; Fri, 28.11.2014
+;
+; Author: ---- fill-in using format: xlogin00 ----
+;
+; ================================================
+
+%include 'libs\utils.asm'
+%include 'libs\checker.asm'
+
+[section .data] 	; data segment definition
+
+; Number sequence
+%ifdef TEST
+	seq: 		db 25, -5, 15, 20, 25, 30, 25, 20, 15, 10, 5, 0, -5, -10, -15
+	k:			db 6
+	n:   		db 15
+	nFib:		db 20
+	results:	dd -2093, 20, 25, 10945
+%else
+	;          THIS sequence is valid for normal run
+	;           |
+	;           v
+	seq: 		db 3, 5, 10, 15, 18, 21, 33, 11, 45
+	k:			db 4
+	n:   		db 9
+	nFib:		db 10
+	results:	dd 24, 62, 105, 88
+%endif
+
+sHelloMsg: 	db  "Hello World!",EOL,0
+
+[section .text use32 class=CODE] 	; basis segment definition
+
+_prologue                			; macro -- program initialisation
+
+; --------------------------------------------------------------------------------------------
+; Assignment:
+; - tasks 1..4 in the source code below
+; - (!) do not touch lines with comment ;--- at their end 
+; --------------------------------------------------------------------------------------------
+
+task_1:
+; Using call/ret construct a function to calculate product 
+; of three signed 32bit integers stored in EAX, ECX, EDX 
+; and store result in EDX register. Ignore overflow issues.
+; This function should start at label 'mul3'
+; 
+; Example1: EAX = -1
+;			ECX = 10
+;			EDX =  5
+;           ...
+;           result: EDX = -50
+;
+; At the 't1_check' label perform test of 'mul3' function 
+; using first 3 members of the 'seq' sequence lowered by 2
+;
+; Example1: seq: db 1, 5, -3
+; 				   -1, 3, -5  (after lowering by 2) 
+;           ...
+;           result: EDX = 15
+;
+; (0.5 point)
+;
+t1_check:						;--- 
+	movsx EAX, byte [seq]
+	sub EAX, 2
+	movsx ECX, byte [seq+1]
+	sub ECX, 2
+	movsx EDX, byte [seq+2]
+	sub EDX, 2
+	call mul3					;---
+		
+	mov EAX, EDX
+	call WriteInt32
+	_check 1					;---
+
+	jmp task_2					;--- jump over to 'task_2' to avoid 
+								;    running into the mul3 function 
+mul3:							;--- 
+	imul EDX
+	imul ECX
+	mov EDX, EAX
+	ret							; place return from function here
+
+;---------------------------------------------------------------------------------
+
+task_2:
+; Construct funtion prep3 which will prepare 3 successive 
+; elements at k-th position from a given sequence. Elements 
+; are lowered by 2 and go to registers EAX, ECX, EDX. Basic
+; offset to the start of the sequence is passed in the EBX 
+; register. Parameter k is passed in the ECX register. 
+; Sequence is always an array of bytes. EBX register content
+; must not be altered inside the function. 
+; 
+; Example:	seq:	db 1,2,3,4,5,6
+;			k:		db 2
+;			...
+;			result: EAX = 1, ECX = 2, EDX = 3 
+; 
+; At the 't2_check' label perform test of prep3 function.
+; Place argument preparation code just after the label.  
+;
+; (0.5 point)
+;
+
+t2_check:						;---
+	movzx ECX, byte [k]			
+	mov EBX, seq				
+	
+	call prep3 					;---
+	sub EBX, seq				;---
+	sub EDX, EAX				;---
+;	sub EDX, EBX				;---
+;	sub EDX, ECX				;---
+	_check 2					;---
+	jmp task_3					;---
+	
+prep3:							;--- 
+	push EBX
+	add EBX, ECX
+	movsx EAX, byte [EBX]
+	sub EAX, 2
+	movsx ECX, byte [EBX+1]
+	sub ECX, 2
+	movsx EDX, byte [EBX+2]
+	sub EDX, 2
+	
+	_uwriteln EAX
+	_uwriteln EBX
+	_uwriteln ECX
+	
+	pop EBX
+	ret							;--- 
+	
+;---------------------------------------------------------------------------------
+
+  
+task_3:
+; Calculate sum of all elements in the sequence seq
+; from the first element up until the point where
+; next element is greater than actual. Save result into 
+; the EDX register. Number of all elements is in variable 'n'
+;
+; Example: seq: db 1, 2, 3, 2
+;          ...
+;          result: EDX = 6     
+;    
+; (0.5 point)
+;
+	movzx ECX, byte [n]
+	mov EBX, seq
+	xor EDX, EDX
+	xor EAX, EAX
+t3_loop:
+	mov AL, byte [EBX]
+	cmp AL, byte [EBX+1]
+	jge	t3_end
+t3_then:
+	add EDX, EAX
+t3_end_if:
+	inc EBX
+	loop t3_loop
+t3_end:
+	add EDX, EAX
+
+	_check 3
+;---------------------------------------------------------------------------------   
+
+task_4:
+; Calculate sum of first 'nFib' members of Fibbonachi 
+; series and store result in the EDX register 
+;
+; Fibbonachi series is: 0, 1, 1, 2, 3, 5, 8 ...
+;           definition: F(n)=F(n-1)+F(n-2) for n>=2
+;                       F(0) = 0
+;                       F(1) = 1
+;
+; Example: nFib = 5
+;          ...
+;          result: EDX = 7  
+;
+; (0.5 point)
+;
+	movzx ECX, byte [nFib]
+	mov EDX, 0    ; 1.member of fib.series
+	mov EAX, 1    ; 2.member of fib.series 
+	xor EBX, EBX
+t4_loop:
+	add EBX, EDX	; lets make a sum
+	add EDX, EAX	; compute next member of fib.series
+	xchg EDX, EAX	; and store it in EAX
+	loop t4_loop
+	
+	mov EDX, EBX	; store the result in the right register
+
+
+	_check 4
+;---------------------------------------------------------------------------------  
+
+_epilogue                			; macro -- program exit
+
+
+
+

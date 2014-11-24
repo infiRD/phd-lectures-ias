@@ -1,0 +1,8 @@
+01:33:44 **** Incremental Build of configuration Default for project lab4 ****
+make all 
+del main.o main.exe /Q
+nasm -f win32 -g -O0 --prefix _ -p libs/libIAS_ld.asm  -o main.o main.asm
+ld -o main.exe main.o -LC:\windows\system32 -lkernel32 -LC:\windows\system32 -lmsvcrt
+
+01:33:44 Build Finished (took 200ms)
+

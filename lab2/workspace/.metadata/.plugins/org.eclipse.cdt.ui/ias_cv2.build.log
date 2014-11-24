@@ -1,0 +1,7 @@
+21:57:50 **** Build of configuration Default for project ias_cv2 ****
+make all 
+nasm -f win32 -g --prefix _ -o ias_cv2_win.o ias_cv2_win.s
+ld -o ias_cv2.exe ias_cv2_win.o -LC:\windows\system32 -lkernel32
+
+21:57:50 Build Finished (took 190ms)
+

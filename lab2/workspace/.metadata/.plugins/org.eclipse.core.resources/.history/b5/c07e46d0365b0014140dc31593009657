@@ -1,0 +1,31 @@
+global _start
+extern ExitProcess
+
+; %include 'rw32.inc'     ; natazeni knihovny rw32.inc
+
+[segment .data use32]   ; definice zacatku datoveho segmentu
+ 
+; testovaci retezec
+sMessage db  "Objem: ",10,13,0
+; posloupnost
+dSequence db 1, 5, 15
+ 
+[segment .code use32]   ; definice zacatku kodoveho segementu
+
+section .text
+        _start:
+
+		mov eax, 1
+		mov ebx, 2
+		mov ecx, 3
+        ;
+        ; VOID WINAPI ExitProcess( _In_  UINT uExitCode ) ;
+        ;
+        push    dword 0         ; Arg1: push exit code
+        call    ExitProcess
+        
+        
+        
+        
+        
+        
