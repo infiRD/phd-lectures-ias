@@ -95,7 +95,7 @@ task_2:
 ;           ...
 ;           result: EDX = -50
 ;
-; At the 't2_check' label perform test of 'mul3' subroutine 
+; At the 't1_check' label perform test of 'mul3' subroutine 
 ; using first 3 members of the 'seq' sequence lowered by 2
 ;
 ; Example1: seq: db 1, 5, -3
