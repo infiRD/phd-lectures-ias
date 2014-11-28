@@ -76,6 +76,25 @@
 <entry path="P:\Codasip\jre\lib\endorsed"/>
 </endorsedDirs>
 </libraryInfo>
+<libraryInfo home="Q:\codasip" version="1.7.0_67">
+<bootpath>
+<entry path="Q:\codasip\jre\lib\resources.jar"/>
+<entry path="Q:\codasip\jre\lib\rt.jar"/>
+<entry path="Q:\codasip\jre\lib\sunrsasign.jar"/>
+<entry path="Q:\codasip\jre\lib\jsse.jar"/>
+<entry path="Q:\codasip\jre\lib\jce.jar"/>
+<entry path="Q:\codasip\jre\lib\charsets.jar"/>
+<entry path="Q:\codasip\jre\lib\jfr.jar"/>
+<entry path="Q:\codasip\jre\classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="Q:\codasip\jre\lib\ext"/>
+<entry path="C:\Windows\Sun\Java\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="Q:\codasip\jre\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
 <libraryInfo home="D:\ProgramFiles\codasip-studio\jre" version="1.7.0_67">
 <bootpath>
 <entry path="D:\ProgramFiles\codasip-studio\jre\lib\resources.jar"/>

@@ -1,6 +1,22 @@
+<<<<<<< HEAD
 15:21:04 **** Build of configuration Default for project lab4 ****
 make clean 
 del main.o main.exe /Q
 
 15:21:04 Build Finished (took 143ms)
+=======
+13:44:01 **** Build of configuration Default for project lab4 ****
+make test 
+del main.o main.exe /Q
+nasm -f win32 -g -O0 --prefix _ -p libs/libIAS_ld.asm -d TEST -o main.o main.asm
+ld -o main.exe main.o -LC:\windows\system32 -lkernel32 -LC:\windows\system32 -lmsvcrt
+
+--- Performing tests --- 
+
+Hello world!Check 2: Result check failed! -2093 (correct result) <> 4198400
+Check 3: Result check failed! -28 (correct result) <> 183451978
+Check 4: Result check failed! 45611 (correct result) <> 183451978
+
+13:44:01 Build Finished (took 353ms)
+>>>>>>> 74fe6e292beb10743fd1d708833889261ba6a3bf
 

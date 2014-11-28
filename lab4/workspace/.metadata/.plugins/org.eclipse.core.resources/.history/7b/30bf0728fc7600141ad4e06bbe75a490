@@ -214,6 +214,15 @@ task_4:
 	
 	
 	
+	mov ECX, 100
+	
+t4_loop:	
+	
+	_iwriteln ECX
+	
+	loop t4_loop
+	
+	
 	
 	_check 4					;---
 	
