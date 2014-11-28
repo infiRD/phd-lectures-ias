@@ -31,6 +31,7 @@
 %endif
 
 sHello:		db 	"Hello world!", 0
+sAnswer: 	db  "The Answer to the Ultimate Question of Life, The Universe, and Everything is .. ", 0
 
 [section .text use32 class=CODE] 	; basis segment definition
 
@@ -64,22 +65,21 @@ task_1:
 	call WriteString
 
 ; - print out the EOL (end of line) character using WriteNewLine subroutine   
-	
-	
+	call WriteNewLine
 
 ; - print out the following text: 
 ;   "The Answer to the Ultimate Question of Life, The Universe, and Everything is ... "
-	
-	
+	mov ESI, sAnswer
+	call WriteString
 
 ; - print out the number 42 using WriteInt32 subroutine
 ; (number can be print also using _iwriteln x macro where x is the source register. 
-;  E.g. _iwriteln EAX)
-	
-	
+;  E.g. _iwriteln EAX)	mov EAX, 42
+	call WriteInt32
 	
 ; - print out the EOL   
-		
+	call WriteNewLine	
+
 
 ; --------------------------------------------------------------------------------------------
 
@@ -107,11 +107,12 @@ task_2:
 ;
 t2_check:						;--- 
  	; -- your code here ---
-
-
-
-
-
+	movsx EAX, byte [seq]
+	sub EAX, 2
+	movsx ECX, byte [seq+1]
+	sub ECX, 2
+	movsx EDX, byte [seq+2]
+	sub EDX, 2
 
 	call mul3					;---
 	_check 2					;---
@@ -119,12 +120,9 @@ t2_check:						;---
 								;    running into the mul3 function 
 mul3:							;--- 
 	; -- your code here ---
-
-
-
-
-
-
+	imul EDX
+	imul ECX
+	mov EDX, EAX
 	ret							; place return from subroutine here
 
 ; --------------------------------------------------------------------------------------------
@@ -138,12 +136,12 @@ task_3:
 ; Sequence is always an array of bytes. EBX register content
 ; must not be altered inside the subroutine. 
 ; 
-; Example:	seq:	db 1,2,30,40,50,6
+; Example:	seq:	db 1,2,3,4,5,6
 ;			k:		db 2
 ;			...
-;			result: EAX = 28, ECX = 38, EDX = 48 
+;			result: EAX = 1, ECX = 2, EDX = 3 
 ; 
-; At the 't3_check' label perform the test of prep3 function.
+; At the 't3_check' label perform test of prep3 function.
 ; Place argument preparation code just after the label.  
 ;
 ; (0.5 point)
@@ -151,10 +149,8 @@ task_3:
 
 t3_check:						;---
     ; -- your code here ---
-    
-    
-    
-    
+	movzx ECX, byte [k]			
+	mov EBX, seq				
 	
 	call prep3 					;---
 	sub EBX, seq				;---
@@ -167,11 +163,16 @@ t3_check:						;---
 prep3:							;--- 
     ; -- your code here ---
     ; hint: make use of tha stack to keep EBX unaltered ..
-
+	push EBX
+	add EBX, ECX
+	movsx EAX, byte [EBX]
+	sub EAX, 2
+	movsx ECX, byte [EBX+1]
+	sub ECX, 2
+	movsx EDX, byte [EBX+2]
+	sub EDX, 2
 	
-	
-	
-	
+	pop EBX
 	ret							; place return from subroutine here
 	
 ; --------------------------------------------------------------------------------------------
@@ -210,16 +211,37 @@ task_4:
 ;
 ; (1 point)
 
-	; -- your code here ---
+
+	movzx ECX, byte [n]
+	sub ECX, 2
+	mov EBX, seq
+	xor EAX, EAX
+	push EAX		
 	
+t4_loop:
+	pop EAX
+	push ECX
+	push EAX
 	
+	sub ECX, 1
+	call prep3
+	call mul3
 	
+	pop EAX
+	add EAX, EDX 
 	
-	_check 4					;---
+	pop ECX
+	push EAX
+
+	loop t4_loop	
+	
+	pop EDX
+	
+	_check 4
 	
 ; --------------------------------------------------------------------------------------------
 
-_epilogue                		; macro -- program exit
+_epilogue                			; macro -- program exit
 
 
 
