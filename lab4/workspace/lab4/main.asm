@@ -18,7 +18,7 @@
 	k:			db 6
 	n:   		db 15
 	nFib:		db 20
-	results:	dd -2093, 20, 25, 10945
+	results:	dd 0, -2093, -28, 45611
 %else
 	;          THIS sequence is valid for normal run
 	;           |
@@ -27,10 +27,10 @@
 	k:			db 4
 	n:   		db 9
 	nFib:		db 10
-	results:	dd 24, 62, 105, 88
+	results:	dd 0, 24, -4, 32674
 %endif
 
-sHelloMsg: 	db  "Hello World!",EOL,0
+sHello:		db 	"Hello world!", 0
 
 [section .text use32 class=CODE] 	; basis segment definition
 
@@ -39,14 +39,53 @@ _prologue                			; macro -- program initialisation
 ; --------------------------------------------------------------------------------------------
 ; Assignment:
 ; - tasks 1..4 in the source code below
-; - (!) do not touch lines with comment ;--- at their end 
+; - (!) do not edit/remove lines with comment ;--- at their end
+; - use only registers EAX, EBX, ECX, EDX
+; - use ESI register only for string printing  
 ; --------------------------------------------------------------------------------------------
 
 task_1:
-; Using call/ret construct a function to calculate product 
+; Use macros and functions for console printing prepared for you
+; in the library libIAS_ld.asm (look at libs/libIAS_ld.asm). 
+; Subroutines are called using call instruction like: 
+;
+; 	call subroutine_name
+;
+; Normally you need to prepare some arguments for subroutines
+; prior to executing them. Eg.:
+;
+; 	mov EAX, 1234
+;
+; (1 point)
+;
+
+; - print out the hello world message using WriteString subroutine
+	mov ESI, sHello
+	call WriteString
+
+; - print out the EOL (end of line) character using WriteNewLine subroutine   
+	
+	
+
+; - print out the following text: 
+;   "The Answer to the Ultimate Question of Life, The Universe, and Everything is ... "
+	
+	
+
+; - print out the number 42 using WriteInt32 subroutine
+	
+	
+	
+; - print out the EOL   
+		
+
+; --------------------------------------------------------------------------------------------
+
+task_2:
+; Using call/ret construct a subroutine to calculate product 
 ; of three signed 32bit integers stored in EAX, ECX, EDX 
 ; and store result in EDX register. Ignore overflow issues.
-; This function should start at label 'mul3'
+; This subroutine should start at label 'mul3'
 ; 
 ; Example1: EAX = -1
 ;			ECX = 10
@@ -54,7 +93,7 @@ task_1:
 ;           ...
 ;           result: EDX = -50
 ;
-; At the 't1_check' label perform test of 'mul3' function 
+; At the 't1_check' label perform test of 'mul3' subroutine 
 ; using first 3 members of the 'seq' sequence lowered by 2
 ;
 ; Example1: seq: db 1, 5, -3
@@ -64,37 +103,38 @@ task_1:
 ;
 ; (0.5 point)
 ;
-t1_check:						;--- 
-	movsx EAX, byte [seq]
-	sub EAX, 2
-	movsx ECX, byte [seq+1]
-	sub ECX, 2
-	movsx EDX, byte [seq+2]
-	sub EDX, 2
-	call mul3					;---
-		
-	mov EAX, EDX
-	call WriteInt32
-	_check 1					;---
+t2_check:						;--- 
+ 	; -- your code here ---
 
-	jmp task_2					;--- jump over to 'task_2' to avoid 
+
+
+
+
+
+	call mul3					;---
+	_check 2					;---
+	jmp task_3					;--- jump over to 'task_3' to avoid 
 								;    running into the mul3 function 
 mul3:							;--- 
-	imul EDX
-	imul ECX
-	mov EDX, EAX
-	ret							; place return from function here
+	; -- your code here ---
 
-;---------------------------------------------------------------------------------
 
-task_2:
-; Construct funtion prep3 which will prepare 3 successive 
-; elements at k-th position from a given sequence. Elements 
-; are lowered by 2 and go to registers EAX, ECX, EDX. Basic
+
+
+
+
+	ret							; place return from subroutine here
+
+; --------------------------------------------------------------------------------------------
+
+task_3:
+; Construct subroutine prep3 which will prepare 3 successive 
+; elements at k-th position from a given sequence of bytes (bd). 
+; Elements are lowered by 2 and go to registers EAX, ECX, EDX. Basic
 ; offset to the start of the sequence is passed in the EBX 
 ; register. Parameter k is passed in the ECX register. 
 ; Sequence is always an array of bytes. EBX register content
-; must not be altered inside the function. 
+; must not be altered inside the subroutine. 
 ; 
 ; Example:	seq:	db 1,2,3,4,5,6
 ;			k:		db 2
@@ -107,102 +147,83 @@ task_2:
 ; (0.5 point)
 ;
 
-t2_check:						;---
-	movzx ECX, byte [k]			
-	mov EBX, seq				
+t3_check:						;---
+    ; -- your code here ---
+    
+    
+    
+    
 	
 	call prep3 					;---
 	sub EBX, seq				;---
 	sub EDX, EAX				;---
-;	sub EDX, EBX				;---
-;	sub EDX, ECX				;---
-	_check 2					;---
-	jmp task_3					;---
-	
+	sub EDX, EBX				;---
+	sub EDX, ECX				;---
+	_check 3					;---
+	jmp task_4					;--- jump over to 'task_4' to avoid 
+								;    running into the prep3 function 
 prep3:							;--- 
-	push EBX
-	add EBX, ECX
-	movsx EAX, byte [EBX]
-	sub EAX, 2
-	movsx ECX, byte [EBX+1]
-	sub ECX, 2
-	movsx EDX, byte [EBX+2]
-	sub EDX, 2
-	
-	_uwriteln EAX
-	_uwriteln EBX
-	_uwriteln ECX
-	_uwriteln EDX
-	
-	pop EBX
-	ret							;--- 
-	
-;---------------------------------------------------------------------------------
+    ; -- your code here ---
+    ; hint: make use of tha stack to keep EBX unaltered ..
 
+	
+	
+	
+	
+	ret							; place return from subroutine here
+	
+; --------------------------------------------------------------------------------------------
   
-task_3:
-; Calculate sum of all elements in the sequence seq
-; from the first element up until the point where
-; next element is greater than actual. Save result into 
-; the EDX register. Number of all elements is in variable 'n'
-;
-; Example: seq: db 1, 2, 3, 2
-;          ...
-;          result: EDX = 6     
-;    
-; (0.5 point)
-;
-	movzx ECX, byte [n]
-	mov EBX, seq
-	xor EDX, EDX
-	xor EAX, EAX
-t3_loop:
-	mov AL, byte [EBX]
-	cmp AL, byte [EBX+1]
-	jge	t3_end
-t3_then:
-	add EDX, EAX
-t3_end_if:
-	inc EBX
-	loop t3_loop
-t3_end:
-	add EDX, EAX
-
-	_check 3
-;---------------------------------------------------------------------------------   
-
 task_4:
-; Calculate sum of first 'nFib' members of Fibbonachi 
-; series and store result in the EDX register 
+; Utilising previously created subroutines prep3 and mul3 calculate   
+; the sum of multiplicants obtained from mul3 function applied in 
+; moving window fashion over given data sequence lowered by 2. 
 ;
-; Fibbonachi series is: 0, 1, 1, 2, 3, 5, 8 ...
-;           definition: F(n)=F(n-1)+F(n-2) for n>=2
-;                       F(0) = 0
-;                       F(1) = 1
+; Example follows:
 ;
-; Example: nFib = 5
-;          ...
-;          result: EDX = 7  
+;       	seq:	db 1,2,3,4,5,6
+;			n:   	db 6
+; 
+; 1. pass:	(1-2) * (2-2) * (3-2) = 0
+; 2. pass:	(2-2) * (3-2) * (4-2) = 0
+; 3. pass:	(3-2) * (4-2) * (5-2) = 6
+; 4. pass:	(4-2) * (5-2) * (6-2) = 24
 ;
-; (0.5 point)
+; 			SUM = 0 + 0 + 6 + 24  = 30
+;								   ----
+; 
+; For the given sequence seq in run mode:
+; 1.pass = 24 
+; 2.pass = 312
+; 3.pass = 1664
+; 4.pass = 3952
+; 5.pass = 9424
+; 6.pass = 5301
+; 7.pass = 11997
 ;
-	movzx ECX, byte [nFib]
-	mov EDX, 0    ; 1.member of fib.series
-	mov EAX, 1    ; 2.member of fib.series 
-	xor EBX, EBX
-t4_loop:
-	add EBX, EDX	; lets make a sum
-	add EDX, EAX	; compute next member of fib.series
-	xchg EDX, EAX	; and store it in EAX
-	loop t4_loop
+; SUM = 32674
+;
+; Hint: you will have to use the stack to store the intermadiate 
+; SUM and to store loop counter (e.g. ECX) 
+;
+; (1 point)
+
+	; -- your code here ---
 	
-	mov EDX, EBX	; store the result in the right register
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	_check 4					;---
+	
+; --------------------------------------------------------------------------------------------
 
-
-	_check 4
-;---------------------------------------------------------------------------------  
-
-_epilogue                			; macro -- program exit
+_epilogue                		; macro -- program exit
 
 
 

@@ -43,7 +43,7 @@
 %endmacro
 
 ; macro will print 32bit integer at parameter
-%macro _uwrite 1
+%macro _iwrite 1
 	push EAX
 	mov EAX, %1
 	call WriteInt32
@@ -51,8 +51,8 @@
 %endmacro
 
 ; macro will print 32bit integer at parameter + new line
-%macro _uwriteln 1
-	_uwrite %1
+%macro _iwriteln 1
+	_iwrite %1
 	call WriteNewLine
 %endmacro
 

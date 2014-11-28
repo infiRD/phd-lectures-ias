@@ -1,8 +1,15 @@
-01:33:44 **** Incremental Build of configuration Default for project lab4 ****
-make all 
+07:47:30 **** Build of configuration Default for project lab4 ****
+make run 
 del main.o main.exe /Q
 nasm -f win32 -g -O0 --prefix _ -p libs/libIAS_ld.asm  -o main.o main.asm
 ld -o main.exe main.o -LC:\windows\system32 -lkernel32 -LC:\windows\system32 -lmsvcrt
 
-01:33:44 Build Finished (took 200ms)
+--- Running app ---
+
+Hello world!
+Check 2: Result check failed! 24 (correct result) <> 4198400
+Check 3: Result check failed! -4 (correct result) <> 170410250
+Check 4: Result check failed! 32674 (correct result) <> 170410250
+
+07:47:30 Build Finished (took 284ms)
 

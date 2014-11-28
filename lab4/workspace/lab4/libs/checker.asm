@@ -67,7 +67,7 @@ Check:
 	jmp CheckTask.taskNumOk
 CheckTask.taskNumErr:	
 	_write sErr_wrongTaskNum
-	_uwrite [EBP+8]				; param 1 (taskNum)
+	_iwrite [EBP+8]				; param 1 (taskNum)
 	_putchar ')'
 	_nl
 	jmp CheckTask.return
@@ -76,7 +76,7 @@ CheckTask.taskNumOk:
 	; display "Task x: ...result..."
 	_write sTask
 	_putchar ' '
-	_uwrite [EBP+8]				; param 1 (taskNum)
+	_iwrite [EBP+8]				; param 1 (taskNum)
 	_write sPaddedColon
 	
 	; check for correct result
@@ -93,9 +93,9 @@ CheckTask.taskNumOk:
 	je	CheckTask.ok
 CheckTask.notOk:
 	_write sFailed		; write failed message
-	_uwrite EAX			; correct result from results array is still in EAX
+	_iwrite EAX			; correct result from results array is still in EAX
 	_write sCorrectResultPad
-	_uwrite EDX
+	_iwrite EDX
 	jmp CheckTask.common 
 
 CheckTask.ok:

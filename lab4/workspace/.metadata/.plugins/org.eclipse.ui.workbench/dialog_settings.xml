@@ -19,16 +19,16 @@
 	<section name="InstallationDialogSettings">
 		<item value="706" key="DIALOG_WIDTH"/>
 		<item value="-85" key="DIALOG_Y_ORIGIN"/>
-		<item value="728" key="DIALOG_HEIGHT"/>
 		<item value="-12" key="DIALOG_X_ORIGIN"/>
+		<item value="728" key="DIALOG_HEIGHT"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="ShowViewDialog">
 		<item value="392" key="DIALOG_WIDTH"/>
 		<item value="com.codasip.internal.profiler.ui.views.Test" key="ShowViewDialog.STORE_SELECTED_VIEW_ID"/>
 		<item value="251" key="DIALOG_Y_ORIGIN"/>
-		<item value="813" key="DIALOG_X_ORIGIN"/>
 		<item value="477" key="DIALOG_HEIGHT"/>
+		<item value="813" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<list key="ShowViewDialog.STORE_EXPANDED_CATEGORIES_ID">
 			<item value="org.eclipse.cdt.make.ui"/>
