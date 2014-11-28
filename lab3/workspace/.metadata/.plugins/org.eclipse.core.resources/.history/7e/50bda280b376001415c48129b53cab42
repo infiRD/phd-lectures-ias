@@ -35,8 +35,9 @@ sHelloMsg: 	db  "Hello World!",EOL,0
 _prologue                			; macro -- program initialisation
 
 ; --------------------------------------------------------------------------------------------
-; Assignment:
-; - tasks 1..4 in the source code below
+; Zadanie:
+; - body 1..4 v zdrojovom kode nizsie
+; 
 ; --------------------------------------------------------------------------------------------
 
 task_1:
