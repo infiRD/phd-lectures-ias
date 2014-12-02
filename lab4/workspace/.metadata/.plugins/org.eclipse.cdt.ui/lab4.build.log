@@ -1,6 +1,16 @@
-16:36:27 **** Build of configuration Default for project lab4 ****
-make clean 
+23:50:05 **** Build of configuration Default for project lab4 ****
+make test 
 del main.o main.exe /Q
+nasm -f win32 -g -O0 --prefix _ -p libs/libIAS_ld.asm -d TEST -o main.o main.asm
+ld -o main.exe main.o -LC:\windows\system32 -lkernel32 -LC:\windows\system32 -lmsvcrt
 
-16:36:27 Build Finished (took 202ms)
+--- Performing tests --- 
+
+Hello world!
+The Answer to the Ultimate Question of Life, The Universe, and Everything is .. 42
+Check 2: Pass
+Check 3: Pass
+Check 4: Pass
+
+23:50:05 Build Finished (took 310ms)
 

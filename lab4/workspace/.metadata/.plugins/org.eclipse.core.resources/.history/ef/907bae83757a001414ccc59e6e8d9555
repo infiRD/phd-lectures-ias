@@ -74,8 +74,7 @@ task_1:
 
 ; - print out the number 42 using WriteInt32 subroutine
 ; (number can be print also using _iwriteln x macro where x is the source register. 
-;  E.g. _iwriteln EAX)	
-	mov EAX, 42
+;  E.g. _iwriteln EAX)	mov EAX, 42
 	call WriteInt32
 	
 ; - print out the EOL   
