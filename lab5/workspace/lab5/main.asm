@@ -43,12 +43,12 @@
 	w:			db	4		; width of B matrix
 	n:			db	2		; width of A matrix, height of B matrix 
 
-	; A * B = 	1	0
+	; A * B = 		1	0
 	;			3	0
 
 
 	substr:		db "ko", 0
-	str:		db "kos kokosu"
+	str:		db "kos kokosu", 0
 	
 	results:	dd 3, 10, 4
 
