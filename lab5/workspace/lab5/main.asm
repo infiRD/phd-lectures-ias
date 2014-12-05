@@ -150,7 +150,13 @@ strlen:
 	
 	
 ; --------------------------------------------------------------------------------------------
-
+task_3:
+; pouzite rutinu findstr a mozte vyuzit aj rutinu strlen na 
+; najdenie vsetkych vyskytov podretazca substr v retazci strAll. 
+; 
+; pocet vyskytov ulozte do premennej 'nSubstr', jednotlive indexy vyskytov 
+; podretazca ulozte do pola 'buffer'.
+; 
 
 
 
