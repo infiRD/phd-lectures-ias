@@ -122,14 +122,14 @@ t2_check:
  	
 	_check 4					;---
 	
-; zavolajte subrutinu strlen pre retazec str1
+; zavolajte subrutinu strlen pre retazec str2
 ; navratovu hodnotu ulozte do registra EDX
 
 	; -- your code here ---
  	
 	_check 5					;---
 	
-; zavolajte subrutinu strlen pre retazec str1
+; zavolajte subrutinu strlen pre retazec str3
 ; navratovu hodnotu ulozte do registra EDX
 
 	; -- your code here ---
