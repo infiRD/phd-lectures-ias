@@ -1,0 +1,6 @@
+07:32:23 **** Build of configuration Default for project ias_cv2 ****
+make clean 
+del ias_cv2_win.o ias_cv2.exe
+
+07:32:23 Build Finished (took 242ms)
+

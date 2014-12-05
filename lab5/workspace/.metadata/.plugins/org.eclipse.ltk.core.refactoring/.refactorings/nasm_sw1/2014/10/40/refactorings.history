@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;nasm_sw1/nasm_sw1.s&apos; to &apos;nasm_sw1_win.s&apos;" description="Rename resource &apos;nasm_sw1.s&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="nasm_sw1.s" name="nasm_sw1_win.s" stamp="1412256967434" updateReferences="true"/>
+</session>
