@@ -16,7 +16,7 @@
 %ifdef TEST
 	A: 			db 	1, -2, 	\
 				   	-3, 4
-	B:			db 	1, 2, 3, 4 	\
+	B:			db 	1, 2, 3, 4, 	\
 		   			5, 6, 7, 8
 	h:			db 	2		; height of A matrix
 	w:			db	4		; width of B matrix
