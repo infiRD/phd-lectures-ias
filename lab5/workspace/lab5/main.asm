@@ -19,9 +19,9 @@
 	str1:		db "podkovicku konikovi", 0
 	str2:		db "podkovicku kujem", 0
 	str3:		db "kujem podkovicku", 0
-	strAll:		db "kujem, kujem podkovicku, konikovi na nozicku. kujem, kujem vesele, zo zeleza ocele", 0
+	strAll:		db "kujem, kujem podkovicku, konikovi na nozicku. kujem vesele, zo zeleza ocele", 0
 	
-	results:	dd -1, 11, 0, 19, 16, 16
+	results:	dd -1, 11, 0, 19, 16, 16, 3
  
 %else
 	;          THESE are data valid for normal run
@@ -33,9 +33,10 @@
 	str3:		db "lopata", 0
 	strAll:		db "nakosil som plny kos kokosov"
 	
-	results:	dd 0, 2, -1, 11, 4, 6
+	results:	dd 0, 2, -1, 11, 4, 6, 4
 
 %endif
+
 
 [section .bss] 	; bss (uninitialised data) segment definition
 	buffer:     resb    64
