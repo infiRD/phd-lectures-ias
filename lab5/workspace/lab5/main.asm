@@ -14,50 +14,30 @@
 
 ; Number sequence
 %ifdef TEST
-	A: 			db 	1, -2, 	\
-				   	-3, 4
-	B:			db 	1, 2, 3, 4, 	\
-		   			5, 6, 7, 8
-	h:			db 	2		; height of A matrix
-	w:			db	4		; width of B matrix
-	n:			db	2		; width of A matrix, height of B matrix 
-	
-	; A * B = 	-9	-10	-11	-12
-	;			 17	 18	 19	 20
-	
-	
 	substr:		db "kujem", 0
-	str:		db "kujem, kujem podkovicku, konikovi na nozicku. kujem, kujem vesele, zo zeleza ocele", 0
 	
-	results:	dd 4, 106, 32
+	str1:		db "podkovicku konikovi", 0
+	str2:		db "podkovicku kujem", 0
+	str3:		db "kujem, kujem podkovicku, konikovi na nozicku. kujem, kujem vesele, zo zeleza ocele", 0
+	
+	results:	dd -1, 11, 0
  
 %else
 	;          THESE are data valid for normal run
 	;           |
 	;           v
-	A: 			db 	1, 2, 	\
-				   	3, 4
-	B:			db 	1, 0, 	\
-		   			0, 1
-	h:			db 	2		; height of A matrix
-	w:			db	4		; width of B matrix
-	n:			db	2		; width of A matrix, height of B matrix 
-
-	; A * B = 		1	0
-	;			3	0
-
-
 	substr:		db "ko", 0
-	str:		db "kos kokosu", 0
+	str1:		db "kos kokosu", 0
+	str2:		db "asko", 0
+	str3:		db "lopata", 0
 	
-	results:	dd 3, 10, 4
+	results:	dd 0, 2, -1
 
 %endif
 
 [section .bss] 	; bss (uninitialised data) segment definition
 	buffer:     resb    64
 	nSubstr:    resb    1
-	C: 		   	resb    256
 
 [section .text use32 class=CODE] 	; basis segment definition
 
@@ -71,91 +51,62 @@ _prologue                			; macro -- program initialisation
 ; --------------------------------------------------------------------------------------------
 
 task_1:							;---
-; vytvorte program na najdenie vsetkych podretazcov 'substr'
-; v retazci 'str'. Pozicie podretazcov ulozte do buffra 'buffer'
+; vytvorte rutinu 'findstr' na najdenie podretazca (substr) v retazci (str). 
+; Volba registrov a predavania parametrov je na vas. Odporucam 
+; pouzit registre ESI a EDI na prenesenie offsetov k retazcom. Rutina 
+; by mala vratit -1 ak sa v retazci podretazec nenachadza. 
 ;
-; Priklad
+; Priklad 1:
 ;	substr = "ma"
 ;	str = "mama ma emu"
+;	navratova hodnota = 0 	
 ;
-;	nSubstr = 3
-; 	buffer = 0, 2, 5
+; Priklad 2:
+;	substr = "ma"
+;	str = "emu ma"
+;	navratova hodnota = 4 	
+; 
+; Priklad 3:
+;	substr = "ma"
+;	str = "emu"
+;	navratova hodnota = -1 	
 ;
-; pouzite subrutiny zapiste za navestie t1_routines
-;
-; (1.5 bodu)
-
- 	; -- your code here ---
-
-
-
+; (2 body)
 
 t1_check:						;---
-	movzx EDX, byte [nSubstr]	;---
+; zavolajte subrutinu findstr pre podretazec substr a retazec str1
+; navratovu hodnotu ulozte do registra EDX 
+	
+	 ; -- your code here ---
+	
 	_check 1					;---
 
-; spocitajte sumu vsetkych hodnot v buffri 'buffer' a vysledok 
-; ulozte do EDX. Pre priklad uvedeny vyssie plati; (suma) EDX = 7
- 	
- 	; -- your code here ---
- 	
- 	
- 	
- 	
+; zavolajte subrutinu findstr pre podretazec substr a retazec str2
+; navratovu hodnotu ulozte do registra EDX 
+	
+	 ; -- your code here ---
+	
 	_check 2					;---
-	jmp task_2					;---
+	
+; zavolajte subrutinu findstr pre podretazec substr a retazec str3
+; navratovu hodnotu ulozte do registra EDX 
+	
+	 ; -- your code here ---
+	
+	_check 3					;---	
+ 	
+ 	jmp task_2					;---
 
-t1_routines:					;---
+
+
+findstr:						;---
 
 	; -- your code here ---
-
-
-
-
+	
 
 ; --------------------------------------------------------------------------------------------
 
 task_2:
-; vytvorte algoritmus pre vypocet nasobenia matic A * B = C. 
-; - vyska matice A je v premennej 'h'
-; - sirka matice B je v premennej 'w'
-; - vyska matice B a sirka A je v premennej 'n' 
-;
-; Pre nazornu ukazku nasobenia matic je mozne pouzit kalkulator:
-; http://matrix.reshish.com/multiplication.php
-; 
-; Vyslednu maticu C ukladajte do neinicializovanej oblasti s navestim 'C'
-;
-;
-; pouzite subrutiny zapiste za navestie t2_routines
-;
-; (1.5 bodu)
-;
-
-
-
-t2_check:						;---
-; spocitajte sumu vsetkych hodnot v matici C a vysledok 
-; ulozte do EDX. 
-;
-; Pre riadny beh programu kde sa matica C rovna: 1 0 
-; 											     3 0
-; 
-; je (suma) EDX = 4
-; 
- 	
- 	; -- your code here ---
- 	
- 	
- 	
- 	
-	_check 3					;---
-	jmp epilogue				;---
-
-t2_routines:					;---
-
-	; -- your code here ---
-
 
 
 
@@ -164,7 +115,3 @@ t2_routines:					;---
 epilogue:
 
 _epilogue                			; macro -- program exit
-
-
-
-
