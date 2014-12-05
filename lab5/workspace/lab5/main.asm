@@ -18,20 +18,22 @@
 	
 	str1:		db "podkovicku konikovi", 0
 	str2:		db "podkovicku kujem", 0
-	str3:		db "kujem, kujem podkovicku, konikovi na nozicku. kujem, kujem vesele, zo zeleza ocele", 0
+	str3:		db "kujem podkovicku", 0
+	strAll:		db "kujem, kujem podkovicku, konikovi na nozicku. kujem, kujem vesele, zo zeleza ocele", 0
 	
-	results:	dd -1, 11, 0
+	results:	dd -1, 11, 0, 19, 16, 16
  
 %else
 	;          THESE are data valid for normal run
 	;           |
 	;           v
 	substr:		db "ko", 0
-	str1:		db "kos kokosu", 0
+	str1:		db "kos kokosov", 0
 	str2:		db "asko", 0
 	str3:		db "lopata", 0
+	strAll:		db "nakosil som plny kos kokosov"
 	
-	results:	dd 0, 2, -1
+	results:	dd 0, 2, -1, 11, 4, 6
 
 %endif
 
@@ -107,6 +109,49 @@ findstr:						;---
 ; --------------------------------------------------------------------------------------------
 
 task_2:
+; vytvorte funkciu strlen, ktora vrati dlzku retazca. Predavanie parametrov
+; si zvolte sami
+;
+; (0.5 bodu)
+
+t2_check:
+; zavolajte subrutinu strlen pre retazec str1
+; navratovu hodnotu ulozte do registra EDX
+
+	; -- your code here ---
+ 	
+	_check 4					;---
+	
+; zavolajte subrutinu strlen pre retazec str1
+; navratovu hodnotu ulozte do registra EDX
+
+	; -- your code here ---
+ 	
+	_check 5					;---
+	
+; zavolajte subrutinu strlen pre retazec str1
+; navratovu hodnotu ulozte do registra EDX
+
+	; -- your code here ---
+ 	
+	_check 6					;---
+	
+	
+	
+	
+	
+		
+	jmp task_3					;---
+
+strlen:
+
+
+	; -- your code here ---
+	
+	
+; --------------------------------------------------------------------------------------------
+
+
 
 
 
