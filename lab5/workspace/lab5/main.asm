@@ -12,7 +12,7 @@
 
 [section .data] 	; data segment definition
 
-; Number sequence
+; Testing data
 %ifdef TEST
 	substr:		db "kujem", 0
 	
@@ -21,7 +21,7 @@
 	str3:		db "kujem podkovicku", 0
 	strAll:		db "kujem, kujem podkovicku, konikovi na nozicku. kujem vesele, zo zeleza ocele", 0
 	
-	results:	dd -1, 11, 0, 19, 16, 16, 3
+	results:	dd -1, 11, 0, 19, 16, 16, 3, 53
  
 %else
 	;          THESE are data valid for normal run
@@ -33,7 +33,7 @@
 	str3:		db "lopata", 0
 	strAll:		db "nakosil som plny kos kokosov"
 	
-	results:	dd 0, 2, -1, 11, 4, 6, 4
+	results:	dd 0, 2, -1, 11, 4, 6, 4, 63
 
 %endif
 
@@ -52,7 +52,6 @@ _prologue                			; macro -- program initialisation
 ; - (!) do not edit/remove lines with comment ;--- at their end
 ; 
 ; --------------------------------------------------------------------------------------------
-
 task_1:							;---
 ; vytvorte rutinu 'findstr' na najdenie podretazca (substr) v retazci (str). 
 ; Volba registrov a predavania parametrov je na vas. Odporucam 
@@ -108,7 +107,6 @@ findstr:						;---
 	
 
 ; --------------------------------------------------------------------------------------------
-
 task_2:
 ; vytvorte funkciu strlen, ktora vrati dlzku retazca. Predavanie parametrov
 ; si zvolte sami
@@ -150,7 +148,7 @@ strlen:
 	; -- your code here ---
 	
 	
-; --------------------------------------------------------------------------------------------
+; --------------------------------------------------------------------------------------------	
 task_3:
 ; pouzite rutinu findstr a mozte vyuzit aj rutinu strlen na 
 ; najdenie vsetkych vyskytov podretazca substr v retazci strAll. 
@@ -158,9 +156,23 @@ task_3:
 ; pocet vyskytov ulozte do premennej 'nSubstr', jednotlive indexy vyskytov 
 ; podretazca ulozte do pola 'buffer'.
 ; 
+; ! pozor: pole 'buffer' a premenna 'nSubstr' su velkosti jeden bajt
+;
+; (0.5 bodu)
+;
 
+	; -- your code here ---
 
-
+t3_check:							;---
+	movzx EDX, byte [nSubstr] 		;---
+	_check 7						;---
+	movzx ECX, byte [nSubstr] 		;---
+	xor EDX, EDX					;--- 
+t3_sumUp:							;---
+	movzx EAX, byte [buffer + ECX - 1]	;--- 
+	add EDX, EAX 					;---
+	loop t3_sumUp					;---
+	_check 8						;---
 
 
 ; --------------------------------------------------------------------------------------------
