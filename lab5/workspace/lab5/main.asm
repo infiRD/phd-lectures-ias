@@ -37,7 +37,6 @@
 
 %endif
 
-
 [section .bss] 	; bss (uninitialised data) segment definition
 	buffer:     resb    64
 	nSubstr:    resb    1
@@ -52,7 +51,8 @@ _prologue                			; macro -- program initialisation
 ; - (!) do not edit/remove lines with comment ;--- at their end
 ; 
 ; --------------------------------------------------------------------------------------------
-task_1:							;---
+
+task_1:                         ;---
 ; vytvorte rutinu 'findstr' na najdenie podretazca (substr) v retazci (str). 
 ; Volba registrov a predavania parametrov je na vas. Odporucam 
 ; pouzit registre ESI a EDI na prenesenie offsetov k retazcom. Rutina 
@@ -80,33 +80,30 @@ t1_check:						;---
 ; navratovu hodnotu ulozte do registra EDX 
 	
 	 ; -- your code here ---
-	
-	_check 1					;---
+	 
+	_check 1                    ;---
 
 ; zavolajte subrutinu findstr pre podretazec substr a retazec str2
 ; navratovu hodnotu ulozte do registra EDX 
 	
 	 ; -- your code here ---
-	
-	_check 2					;---
+
+	_check 2                    ;---
 	
 ; zavolajte subrutinu findstr pre podretazec substr a retazec str3
 ; navratovu hodnotu ulozte do registra EDX 
 	
 	 ; -- your code here ---
-	
-	_check 3					;---	
- 	
- 	jmp task_2					;---
 
-
-
-findstr:						;---
+	_check 3                    ;---	
+ 	jmp task_2                  ;---
+findstr:                            ;---
 
 	; -- your code here ---
-	
+
 
 ; --------------------------------------------------------------------------------------------
+
 task_2:
 ; vytvorte funkciu strlen, ktora vrati dlzku retazca. Predavanie parametrov
 ; si zvolte sami
@@ -118,37 +115,34 @@ t2_check:
 ; navratovu hodnotu ulozte do registra EDX
 
 	; -- your code here ---
- 	
-	_check 4					;---
+
+
+	_check 4                    ;---
 	
 ; zavolajte subrutinu strlen pre retazec str2
 ; navratovu hodnotu ulozte do registra EDX
 
 	; -- your code here ---
- 	
-	_check 5					;---
+
+
+	_check 5                    ;---
 	
 ; zavolajte subrutinu strlen pre retazec str3
 ; navratovu hodnotu ulozte do registra EDX
 
 	; -- your code here ---
- 	
-	_check 6					;---
-	
-	
-	
-	
-	
-		
-	jmp task_3					;---
+
+
+	_check 6                    ;---
+	jmp task_3                  ;---
 
 strlen:
 
-
 	; -- your code here ---
-	
+
 	
 ; --------------------------------------------------------------------------------------------	
+
 task_3:
 ; pouzite rutinu findstr a mozte vyuzit aj rutinu strlen na 
 ; najdenie vsetkych vyskytov podretazca substr v retazci strAll. 
@@ -163,19 +157,26 @@ task_3:
 
 	; -- your code here ---
 
-t3_check:							;---
-	movzx EDX, byte [nSubstr] 		;---
-	_check 7						;---
-	movzx ECX, byte [nSubstr] 		;---
-	xor EDX, EDX					;--- 
-t3_sumUp:							;---
-	movzx EAX, byte [buffer + ECX - 1]	;--- 
-	add EDX, EAX 					;---
-	loop t3_sumUp					;---
-	_check 8						;---
 
 
+t3_check:                                   ;---
+	movzx EDX, byte [nSubstr]           ;---
+	_check 7                            ;---
+	movzx ECX, byte [nSubstr]           ;---
+	cmp ECX, 0                          ;---
+	je t3_checkEndLoop                  ;---
+	xor EDX, EDX                        ;--- 
+t3_sumUp:                                   ;---
+	movzx EAX, byte [buffer + ECX - 1]  ;--- 
+	add EDX, EAX                        ;---
+	loop t3_sumUp                       ;---
+t3_checkEndLoop:                            ;---
+	_check 8                            ;---
+	
 ; --------------------------------------------------------------------------------------------
 epilogue:
 
 _epilogue                			; macro -- program exit
+
+
+ 	
