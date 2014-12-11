@@ -1,4 +1,4 @@
-07:54:01 **** Build of configuration Default for project lab5 ****
+19:08:00 **** Build of configuration Default for project lab5 ****
 make run 
 del main.o main.exe /Q
 nasm -f win32 -g -O0 --prefix _ -p libs/libIAS_ld.asm  -o main.o main.asm
@@ -6,9 +6,14 @@ ld -o main.exe main.o -LC:\windows\system32 -lkernel32 -LC:\windows\system32 -lm
 
 --- Running app ---
 
-Check 1: Result check failed! 3 (correct result) <> 0
-Check 2: Result check failed! 10 (correct result) <> 0
+Check 1: Pass
+Check 2: Pass
 Check 3: Pass
+Check 4: Pass
+Check 5: Pass
+Check 6: Pass
+Check 7: Pass
+Check 8: Pass
 
-07:54:02 Build Finished (took 349ms)
+19:08:01 Build Finished (took 654ms)
 

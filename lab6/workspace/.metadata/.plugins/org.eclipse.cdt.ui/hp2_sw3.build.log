@@ -1,0 +1,6 @@
+13:15:14 **** Build of configuration Default for project hp2_sw3 ****
+make clean 
+del hp2_sw3.o hp2_sw3.xexe
+
+13:15:15 Build Finished (took 281ms)
+

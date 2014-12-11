@@ -1,0 +1,7 @@
+10:40:40 **** Build of configuration Default for project hp1_sw1 ****
+make all 
+hp1_asm -c -g3 -o hp1_sw1.o -i hp1_sw1.s
+linker -o hp1_sw1.xexe hp1_sw1.o
+
+10:40:41 Build Finished (took 367ms)
+

@@ -1,0 +1,15 @@
+08:11:56 **** Build of configuration Default for project ias_cv3 ****
+make run 
+del main.o main.exe /Q
+nasm -f win32 -g -O0 --prefix _ -p libs/libIAS_ld.asm  -o main.o main.asm
+ld -o main.exe main.o -LC:\windows\system32 -lkernel32 -LC:\windows\system32 -lmsvcrt
+
+--- Running app ---
+
+Task 1: Pass
+Task 2: Pass
+Task 3: Pass
+Task 4: Pass
+
+08:11:56 Build Finished (took 303ms)
+

@@ -1,0 +1,33 @@
+
+ASM=nasm
+LD=ld
+
+ifeq ($(OS),Windows_NT)
+	SOURCES=ias_cv2_win.s
+	LDFLAGS=-LC:\windows\system32 -lkernel32
+	EXECUTABLE=ias_cv2.exe
+else
+	SOURCES=ias_cv2_lin.s
+	LDFLAGS=
+	EXECUTABLE=ias_cv2
+endif
+
+OBJECTS=$(SOURCES:.s=.o)
+all: $(SOURCES) $(EXECUTABLE)
+	
+$(EXECUTABLE): $(OBJECTS)
+	$(LD) -o $@ $(OBJECTS) ${LDFLAGS}
+
+.s.o:
+ifeq ($(OS),Windows_NT)
+	$(ASM) -f win32 -g --prefix _ -o $@ $<
+else
+	$(ASM) -f elf64 -F dwarf -g -o $@ $<	
+endif
+
+clean:
+ifeq ($(OS),Windows_NT)
+	del ${OBJECTS} $(EXECUTABLE)
+else
+	rm -f ${OBJECTS} $(EXECUTABLE)
+endif
