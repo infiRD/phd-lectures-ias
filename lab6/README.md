@@ -21,9 +21,9 @@ git clone https://github.com/infiRD/IAS.git IAS-master
 - make your IAS working directory and make your working copy of supplied lab5 workspace 
 ```bash
 mkdir IAS
-cp IAS-master/lab5 IAS/ -r
+cp IAS-master/lab6 IAS/ -r
 ```
-- open provided workspace using Codasip Studio at path **P:/IAS/lab4/workspace**
+- open provided workspace using Codasip Studio at path **P:/IAS/lab6/workspace**
 - solve all the tasks
 
 - check out the [lab6 forum] (http://ias.infi-rd.com/forum/viewtopic.php?f=1&t=2&sid=a3109168e9a104b5e26a71f3003d1429) (Slovak only)
