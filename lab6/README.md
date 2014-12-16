@@ -1,10 +1,9 @@
-IAS - lab 5
+IAS - lab 6
 ===========
-More complex programs
----------------------
+Calling conventions (stdcall, cdecl)
+------------------------------------
 
-- read about instructions operating with stack and about stack principles on this [elaborate wiki page] (https://wis.fit.vutbr.cz/FIT/db/vyuka/ucitel/cwk.php?title=IAS:Cvi%E8en%ED_4&id=9959)
-- read about [common usage of x86 registers](http://www.eecg.toronto.edu/~amza/www.mindsec.com/files/x86regs.html)
+- read through [lab6 wiki] (http://wiki.infi-rd.com/index.php?title=IAS_lab6) (Slovak only)
 - download portable version of git [msysgit](https://github.com/msysgit/msysgit/releases), for example [portableGit-1.9.4-preview20140929](https://github.com/msysgit/msysgit/releases/download/Git-1.9.4-preview20140929/PortableGit-1.9.4-preview20140929.7z)
 - unpack msysgit into some directory and run its shell using
 ```bash
@@ -27,10 +26,11 @@ cp IAS-master/lab5 IAS/ -r
 - open provided workspace using Codasip Studio at path **P:/IAS/lab4/workspace**
 - solve all the tasks
 
+- check out the [lab6 forum] (http://ias.infi-rd.com/forum/viewtopic.php?f=1&t=2&sid=a3109168e9a104b5e26a71f3003d1429) (Slovak only)
 
 ### Aditional information
 
-You might find useful matrix a [multiplication calculator](http://matrix.reshish.com/multiplication.php)
+You might want to read about [common usage of x86 registers](http://www.eecg.toronto.edu/~amza/www.mindsec.com/files/x86regs.html)
 
 You might want to check out the [tips for Codasip Studio (Slovak only)](https://www.evernote.com/shard/s373/sh/b3ae5877-6faf-461d-9310-37daf9322f16/8033abc217738785).
 
