@@ -1,0 +1,282 @@
+; ================================================ 
+;
+; IAS, lab6
+; Fri, 12.12.2014
+;
+; Author: ---- fill-in using format: xlogin00 ----
+;
+; ================================================
+
+%include 'libs\utils.asm'
+%include 'libs\checker.asm'
+
+[section .data] 	; data segment definition
+
+; Testing data
+%ifdef TEST
+	substr:		db "kujem", 0
+	
+	str1:		db "podkovicku konikovi", 0
+	str2:		db "podkovicku kujem", 0
+	str3:		db "kujem podkovicku", 0
+	strAll:		db "kujem, kujem podkovicku, konikovi na nozicku. kujem vesele, zo zeleza ocele", 0
+	
+	results:	dd -1, 11, 0, 19, 16, 16, 3, 53
+ 
+%else
+	;          THESE are data valid for normal run
+	;           |
+	;           v
+	substr:		db "ko", 0
+	str1:		db "kos kokosov", 0
+	str2:		db "asko", 0
+	str3:		db "lopata", 0
+	strAll:		db "nakosil som plny kos kokosov"
+	
+	results:	dd 0, 2, -1, 11, 4, 6, 4, 63
+
+%endif
+
+[section .bss] 	; bss (uninitialised data) segment definition
+	buffer:     resb    64
+	nSubstr:    resb    1
+
+[section .text use32 class=CODE] 	; basis segment definition
+
+_prologue                			; macro -- program initialisation
+
+; --------------------------------------------------------------------------------------------
+; Assignment:
+; - tasks 1..2 in the source code below
+; - (!) do not edit/remove lines with comment ;--- at their end
+; 
+; --------------------------------------------------------------------------------------------
+
+task_1:                         ;---
+; vytvorte proceduru findstr() na najdenie podretazca (napr. substr) v retazci (napr. str).
+; Procedura findstr nech ma semantiku (zapisana ako v C):   
+; 
+; int32_t findstr( char* str, char* substr )
+;
+; int32_t    je 32 bitovy znamienkovy datovy typ
+; char*      je pointer na char (32bitova adresa retazca v pamati)
+; 
+; return value je index prveho vyskytu podretazca v retazci, pripadne -1 ak sa podretazec
+; v retazci nenachadza
+;
+; ! pre predavanie parametrov pouzite konvenciu stdcall 
+;
+; Priklad 1:
+;	substr = "ma"
+;	str = "mama ma emu"
+;	navratova hodnota = 0 	
+;
+; Priklad 2:
+;	substr = "ma"
+;	str = "emu ma"
+;	navratova hodnota = 4 	
+; 
+; Priklad 3:
+;	substr = "ma"
+;	str = "emu"
+;	navratova hodnota = -1 	
+;
+; (2 body)
+
+t1_check:						;---
+; zavolajte subrutinu findstr pre podretazec substr a retazec str1
+; navratovu hodnotu ulozte do registra EDX 
+	
+	 ; -- your code here ---
+	 
+	 
+	_check 1                    ;---
+
+; zavolajte subrutinu findstr pre podretazec substr a retazec str2
+; navratovu hodnotu ulozte do registra EDX 
+	
+	 ; -- your code here ---
+
+	_check 2                    ;---
+	
+; zavolajte subrutinu findstr pre podretazec substr a retazec str3
+; navratovu hodnotu ulozte do registra EDX 
+	
+	 ; -- your code here ---
+
+	_check 3                    ;---	
+ 	jmp task_2                  ;---
+ 	
+
+findstr:                        ;---
+	                            ;--- <-zaèiatok prológu funckie
+    ; == sem umiestnite prolog funkcie ==
+    push EBP
+    mov EBP, ESP
+    	                             
+	                            ;--- <- koniec prológu funckie 
+
+
+    ; == kod podprogramu ==
+
+
+	
+	push EAX
+	push EBX
+	push ECX
+
+	xor EBX, EBX
+	xor ECX, ECX
+	xor EDX, EDX
+	xor EAX, EAX
+
+findstr_loop:
+	mov AL, [ESI + EBX]         ; string
+	mov DL, [EDI + ECX]         ; substring	
+
+	cmp DL, 0
+	jne notAtTheEndOfSubstrYet
+								; we are at the end of the substring - we have a match then !
+	mov EDX, EBX				; EBX - actual offset inside the string 
+	sub EDX, ECX				; ECX - lenght of the substring (we've just hit substring's end)
+	jmp findstr_end
+notAtTheEndOfSubstrYet:
+	cmp AL, 0
+	jne notAtTheEndOfStrYet
+								; we are at the end of the big string - we haven't found the match
+	mov EDX, -1					; code for 'not found'								
+	jmp findstr_end
+notAtTheEndOfStrYet:
+	cmp AL, DL					
+	jne notEq
+								; we have a match on character level, move on to next chars
+	inc EBX
+	inc ECX
+	jmp findstr_loop
+notEq:							; characters are not equal, rewind substring and try to match again	
+	cmp ECX, 0
+	je substrAlreadyRewound 
+	xor ECX, ECX
+	jmp findstr_loop
+substrAlreadyRewound:			; if the substring is already rewound, increment string index	
+	inc  EBX
+	jmp findstr_loop
+	
+findstr_end:
+	pop ECX
+	pop EBX
+	pop EAX
+
+	ret
+
+; --------------------------------------------------------------------------------------------
+
+task_2:
+; create routine strlne, which will compute length of given string
+; Strings are normally terminated according to C convencion by zero byte
+; It does not matter how you will pass the parameters to and from 
+; the routine   
+;
+; (0.5 bodu)
+
+t2_check:
+; call the strlen routine for string str1
+; return value stor into EDX register
+
+	; -- your code here ---
+	push str1			  
+	call strlen 
+ 	
+	_check 4                    ;---
+	
+; call the strlen routine for string str2
+; return value stor into EDX register
+
+	; -- your code here ---
+ 	mov ESI, str2			  
+	call strlen 
+ 	
+	_check 5                    ;---
+	
+; call the strlen routine for string str3
+; return value stor into EDX register
+
+	; -- your code here ---
+	mov ESI, str3			  
+	call strlen 
+ 	
+	_check 6                    ;---
+	
+	jmp task_3                  ;---
+
+;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~;---
+; Zaciatok implementacie procedury  ;---
+; int32_t strlen(char* str)         ;---
+;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~;---
+strlen:                             ;---
+; - zaciatok prologu procedury      ;---      
+
+    push EBP
+    mov EBP, ESP
+
+; - koniec prologu procedury        ;---     
+; - zaciatok tela procedury         ;---     
+
+	mov EDX, [EBP+8]                ; EDX = adresa str, 1.argument 
+	xor EAX, EAX                    
+cntSrcLen:                          ; count the lenght of the string
+	inc EAX 
+	cmp byte [EDX + EAX], 0
+	jne cntSrcLen
+
+; - koniec tela procedury           ;---     
+; - zaciatok epilogu procedury	    ;---
+
+    mov  ESP, EBP                   ; obnovenie ESP
+    pop  EBP                        ; obnovenie EBP
+    ret  4                          ; navrat a upratanie zasobnika - vyhodenie 4 byte parametra
+    
+; - koniec epilogu procedury        ;---
+;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~;---
+; Koniec implementacie              ;---
+;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~;---
+	
+; --------------------------------------------------------------------------------------------	
+
+task_3:
+; pouzite rutinu findstr a mozte vyuzit aj rutinu strlen na 
+; najdenie vsetkych vyskytov podretazca substr v retazci strAll. 
+; 
+; pocet vyskytov ulozte do premennej 'nSubstr', jednotlive indexy vyskytov 
+; podretazca ulozte do pola 'buffer'.
+; 
+; ! pozor: pole 'buffer' a premenna 'nSubstr' su velkosti jeden bajt
+;
+; (0.5 bodu)
+;
+
+	; -- your code here ---
+
+
+
+t3_check:                                   ;---
+	movzx EDX, byte [nSubstr]           ;---
+	_check 7                            ;---
+	movzx ECX, byte [nSubstr]           ;---
+	cmp ECX, 0                          ;---
+	je t3_checkEndLoop                  ;---
+	xor EDX, EDX                        ;--- 
+t3_sumUp:                                   ;---
+	movzx EAX, byte [buffer + ECX - 1]  ;--- 
+	add EDX, EAX                        ;---
+	loop t3_sumUp                       ;---
+t3_checkEndLoop:                            ;---
+	_check 8                            ;---
+	
+; --------------------------------------------------------------------------------------------
+epilogue:
+
+_epilogue                			; macro -- program exit
+
+
+ 	

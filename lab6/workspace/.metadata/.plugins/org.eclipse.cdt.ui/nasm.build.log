@@ -1,0 +1,7 @@
+15:38:16 **** Build of configuration Default for project nasm ****
+make all 
+nasm -f win32 -g -o nasm_sw1.o nasm_sw1.s
+ld -o nasm_sw1 nasm_sw1.o
+
+15:38:16 Build Finished (took 79ms)
+
