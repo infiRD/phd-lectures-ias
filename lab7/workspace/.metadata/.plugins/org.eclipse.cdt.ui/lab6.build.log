@@ -1,0 +1,21 @@
+18:19:13 **** Build of configuration Default for project lab6 ****
+make test 
+del main.o main.exe /Q
+nasm -f win32 -g -O0 --prefix _ -p libs/libIAS_ld.asm -d TEST -o main.o main.asm
+ld -o main.exe main.o -LC:\windows\system32 -lkernel32 -LC:\windows\system32 -lmsvcrt
+
+--- Performing tests --- 
+
+Check 1: Pass
+Check 2: Pass
+Check 3: Pass
+Check 4: Pass
+Check 5: Pass
+Check 6: Pass
+Check 7: Result check failed! 11 (correct result) <> -1
+Check 8: Pass
+Check 9: Result check failed! 3 (correct result) <> 0
+Check 10: Result check failed! 53 (correct result) <> 0
+
+18:19:13 Build Finished (took 343ms)
+

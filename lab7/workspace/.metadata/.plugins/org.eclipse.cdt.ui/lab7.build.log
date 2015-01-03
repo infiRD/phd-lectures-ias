@@ -1,0 +1,6 @@
+18:14:05 **** Build of configuration Default for project lab7 ****
+make clean 
+del main.o main.exe /Q
+
+18:14:05 Build Finished (took 137ms)
+

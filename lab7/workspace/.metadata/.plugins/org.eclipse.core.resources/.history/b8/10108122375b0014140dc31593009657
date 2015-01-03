@@ -1,0 +1,55 @@
+global _start
+extern ExitProcess
+
+; Makra
+
+%macro prologue 0
+section .text
+		_start:
+%endmacro
+
+%macro epilogue 0
+        ;
+        ; VOID WINAPI ExitProcess( _In_  UINT uExitCode ) ;
+        ;
+        push    dword 0         ; Arg1: push exit code
+        call    ExitProcess
+%endmacro
+        
+; 2. cviceni -- IAS, Po 14
+;
+; Zadani:
+; 1) Podivejte se na ulozeni posloupnosti v datovem segmentu
+; 2) Za pouziti instrukce AND vypiste, jestli je prvni cislo liche (0,5 bodu)
+; 3) Vypiste objem kvadru, kde cisla posloupnosti udavaji delku hran (1 bod)
+; 4) Vypiste prumer posloupnosti (pocitejte s tim, ze delka posloupnosti jsou prave 3) (1 bod)
+; 5) Hlidejte preteceni a podteceni (vsude, kde je to mozne) (0,5 bodu)
+
+%include 'rw32.inc'     ; natazeni knihovny rw32.inc
+ 
+[segment .data use32]   ; definice zacatku datoveho segmentu
+ 
+; testovaci retezec
+sMessage db  "Objem: ",10,13,0
+; posloupnost
+dSequence db 1, 5, 15
+ 
+[segment .code use32]   ; definice zacatku kodoveho segementu
+ 
+prologue                ; makro -- inicializace programu
+
+  ; vlastni program
+  mov  esi,sMessage
+  call WriteString
+ 
+epilogue                ; makro -- ukonceni programu
+
+;
+; Autor: Doplnte ve formatu: xlogin00
+;
+
+
+        
+        
+        
+        
